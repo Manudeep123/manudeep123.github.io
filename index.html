@@ -2,31 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#04030a" />
   <title>Welcome to Manudeep.com</title>
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <div class="scene" aria-hidden="true">
-    <div class="cube">
-      <div class="cube-face face1"></div>
-      <div class="cube-face face2"></div>
-      <div class="cube-face face3"></div>
-      <div class="cube-face face4"></div>
-      <div class="cube-face face5"></div>
-      <div class="cube-face face6"></div>
+  <div id="three-container" aria-hidden="true"></div>
+
+  <div class="hero">
+    <div class="hero-frame">
+      <span class="eyebrow">Premium Welcome</span>
+      <h1>Welcome to Manudeep.com</h1>
+      <p>Step into a cinematic 3D landing experience with modern depth, floating motion, and elegant atmosphere.</p>
+      <div class="hero-footnote">Move your cursor to guide the scene and birds.</div>
     </div>
-    <div class="glow"></div>
   </div>
 
-  <main class="hero">
-    <span class="eyebrow">Welcome</span>
-    <h1>Welcome to Manudeep.com</h1>
-    
-  </main>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
