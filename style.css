@@ -14,17 +14,27 @@
 body{
   min-height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at top, rgba(10, 10, 30, 1) 0%, #020107 45%, #020105 100%);
+  background: radial-gradient(circle at top, rgba(12, 12, 38, 1) 0%, #020107 44%, #020105 100%);
 }
 
 body::before{
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 10% 20%, rgba(110, 103, 255, 0.14), transparent 18%),
-              radial-gradient(circle at 90% 15%, rgba(255, 110, 190, 0.12), transparent 14%),
-              linear-gradient(180deg, rgba(255,255,255,0.05), transparent 45%);
+  background: radial-gradient(circle at 12% 16%, rgba(137, 112, 255, 0.16), transparent 18%),
+              radial-gradient(circle at 88% 12%, rgba(255, 110, 190, 0.1), transparent 14%),
+              linear-gradient(180deg, rgba(255,255,255,0.06), transparent 36%);
   pointer-events: none;
+}
+
+body::after{
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 24%, rgba(97, 84, 255, 0.12), transparent 18%),
+              radial-gradient(circle at 75% 22%, rgba(255, 104, 172, 0.08), transparent 14%);
+  filter: blur(44px);
 }
 
 #three-container{
@@ -41,20 +51,20 @@ body::before{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1rem;
   text-align: center;
 }
 
 .hero-frame{
   position: relative;
-  max-width: 920px;
-  width: 100%;
-  padding: 3rem 3.5rem;
-  border-radius: 32px;
-  background: rgba(8, 8, 18, 0.72);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 40px 120px rgba(0,0,0,0.35);
-  backdrop-filter: blur(22px);
+  width: min(100%, 920px);
+  padding: 2.5rem 2rem;
+  border-radius: 34px;
+  background: linear-gradient(180deg, rgba(11, 10, 22, 0.95), rgba(5, 5, 14, 0.78));
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 56px 170px rgba(0,0,0,0.38);
+  backdrop-filter: blur(28px);
+  overflow: hidden;
 }
 
 .hero-frame::before{
@@ -63,81 +73,39 @@ body::before{
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(117, 83, 255, 0.28), rgba(255, 150, 190, 0.18));
+  background: linear-gradient(135deg, rgba(103, 88, 255, 0.22), rgba(255, 118, 187, 0.15));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   pointer-events: none;
 }
 
-.eyebrow{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.2rem;
-  padding: 0.85rem 1.35rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #c7c1ff;
-  letter-spacing: 0.24em;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-}
-
-h1{
-  font-size: clamp(3rem, 4.5vw, 5.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.08em;
-  margin-bottom: 1.4rem;
-  text-shadow: 0 20px 60px rgba(64, 58, 182, 0.18);
-}
-
-p{
-  margin: 0 auto;
-  max-width: 700px;
-  font-size: 1.15rem;
-  line-height: 1.95;
-  color: rgba(243,243,255,0.86);
-}
-
-.hero-footnote{
-  margin-top: 1.8rem;
-  font-size: 0.95rem;
-  color: rgba(243,243,255,0.6);
-}
-
-.glow-ring{
+.hero-frame::after{
+  content: '';
   position: absolute;
-  inset: -40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(123, 84, 255, 0.16), transparent 40%);
-  filter: blur(30px);
+  inset: 18px;
+  border-radius: 24px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 56%);
   pointer-events: none;
 }
 
-@media (max-width: 860px) {
-  .hero-frame{
-    padding: 2.5rem 2rem;
-  }
-
-  h1{
-    margin-bottom: 1rem;
-  }
+h1{
+  font-size: clamp(3.4rem, 6vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  color: transparent;
+  background: linear-gradient(105deg, #eef2ff 0%, #d2b7ff 45%, #ffb7dc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 0 32px 96px rgba(103, 69, 255, 0.22);
 }
 
-@media (max-width: 560px) {
-  .hero{
-    padding: 1.5rem 1rem;
-  }
-
+@media (max-width: 720px) {
   .hero-frame{
-    border-radius: 26px;
     padding: 2rem 1.5rem;
   }
 
-  .eyebrow{
-    font-size: 0.75rem;
-    padding: 0.7rem 1rem;
-  }
-}
+  h1{
+    font-size: clamp(2.4rem, 10vw, 3.6rem);
