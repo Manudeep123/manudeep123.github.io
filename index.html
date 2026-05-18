@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#04030a" />
-  <title>Welcome to Manudeep.com</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div id="three-container" aria-hidden="true"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#020107" />
+    
+    <!-- Security: Content Security Policy to prevent XSS and data injection -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' ws:;" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Manudeep - Immersive 3D Experience</title>
+    <meta name="title" content="Manudeep - Immersive 3D Experience" />
+    <meta name="description" content="Welcome to the mind-blowing 3D portfolio of Manudeep. Explore a cinematic digital universe crafted with Three.js." />
+    <meta name="keywords" content="portfolio, 3D web design, Three.js, frontend developer, creative developer, Manudeep" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://manudeep.com/" />
+    <meta property="og:title" content="Manudeep - Immersive 3D Experience" />
+    <meta property="og:description" content="Welcome to the mind-blowing 3D portfolio of Manudeep. Explore a cinematic digital universe crafted with Three.js." />
+    <meta property="og:image" content="https://manudeep.com/og-image.jpg" />
 
-  <div class="hero">
-    <div class="hero-frame">
-      <h1>Welcome to Manudeep.com</h1>
-    </div>
-  </div>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://manudeep.com/" />
+    <meta property="twitter:title" content="Manudeep - Immersive 3D Experience" />
+    <meta property="twitter:description" content="Welcome to the mind-blowing 3D portfolio of Manudeep. Explore a cinematic digital universe crafted with Three.js." />
+    <meta property="twitter:image" content="https://manudeep.com/og-image.jpg" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-  <script src="script.js"></script>
-</body>
+    <!-- Preconnect to Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="three-container" aria-hidden="true"></div>
+
+    <main class="ui-layer">
+
+      <section class="hero">
+        <div class="hero-content minimal">
+          <h1 class="minimal-title">MANUDEEP</h1>
+          <div class="minimal-divider"></div>
+        </div>
+      </section>
+      
+      <div class="scroll-indicator">
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+        <span>Scroll to Explore</span>
+      </div>
+    </main>
+
+    <script type="module" src="/main.js"></script>
+  </body>
 </html>
