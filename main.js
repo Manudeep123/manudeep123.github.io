@@ -175,3 +175,68 @@ tl.to('.hero-content', {
   duration: 1,
   ease: 'power2.out'
 }, '-=0.5');
+
+// --- Web Audio API Ambient Synth ---
+let audioCtx, masterGain;
+let isPlaying = false;
+const soundBtn = document.getElementById('sound-toggle');
+const soundText = soundBtn.querySelector('.sound-text');
+
+function initAudio() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioCtx.createGain();
+  masterGain.connect(audioCtx.destination);
+  masterGain.gain.value = 0; // Start silent for fade in
+  
+  // Create a deep, cinematic ambient drone
+  const frequencies = [65.41, 98.00, 130.81, 155.56]; // C2, G2, C3, Eb3
+  frequencies.forEach(freq => {
+    const osc = audioCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    
+    // Lowpass filter to muffle the sound and make it deep
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 200 + Math.random() * 200;
+    
+    // Slow LFO for filter to make the sound "breathe" organically
+    const lfo = audioCtx.createOscillator();
+    lfo.type = 'sine';
+    lfo.frequency.value = 0.05 + Math.random() * 0.05;
+    
+    const lfoGain = audioCtx.createGain();
+    lfoGain.gain.value = 150;
+    
+    lfo.connect(lfoGain);
+    lfoGain.connect(filter.frequency);
+    
+    osc.connect(filter);
+    filter.connect(masterGain);
+    
+    osc.start();
+    lfo.start();
+  });
+}
+
+soundBtn.addEventListener('click', () => {
+  if (!audioCtx) initAudio();
+
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+
+  isPlaying = !isPlaying;
+  
+  if (isPlaying) {
+    soundBtn.classList.add('playing');
+    soundText.textContent = 'SOUND ON';
+    // Fade in smoothly
+    masterGain.gain.setTargetAtTime(0.4, audioCtx.currentTime, 2);
+  } else {
+    soundBtn.classList.remove('playing');
+    soundText.textContent = 'SOUND OFF';
+    // Fade out smoothly
+    masterGain.gain.setTargetAtTime(0.001, audioCtx.currentTime, 0.5);
+  }
+});
