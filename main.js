@@ -173,29 +173,58 @@ tl.to('.hero-content', {
   ease: 'power2.out'
 }, '-=0.5');
 
-// --- Audio Engine ---
+// --- Ambient Audio Engine (Ethereal Chimes) ---
+let audioCtx, masterGain;
 let isPlaying = false;
 const soundBtn = document.getElementById('sound-toggle');
 const soundText = soundBtn.querySelector('.sound-text');
 
-// Create audio element dynamically
-const audio = new Audio('https://upload.wikimedia.org/wikipedia/commons/6/66/Ambient_Space_Music.ogg'); // High quality space ambient
-audio.loop = true;
-audio.volume = 0.4;
+function initAudio() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioCtx.createGain();
+  masterGain.connect(audioCtx.destination);
+  masterGain.gain.value = 0; // Fade in
+
+  // Beautiful, highly audible ethereal chords (C Major 7th)
+  // These frequencies are in the mid-range so they play clearly on ALL laptop and phone speakers!
+  const frequencies = [261.63, 329.63, 392.00, 493.88]; // C4, E4, G4, B4
+  frequencies.forEach(freq => {
+    const osc = audioCtx.createOscillator();
+    osc.type = 'triangle'; // Richer and more audible than sine
+    osc.frequency.value = freq;
+    
+    // Slow LFO for volume pulsing to create a "breathing" ambient rhythm
+    const lfo = audioCtx.createOscillator();
+    lfo.type = 'sine';
+    lfo.frequency.value = 0.1 + Math.random() * 0.1;
+    
+    const lfoGain = audioCtx.createGain();
+    lfoGain.gain.value = 0.5;
+    
+    lfo.connect(lfoGain.gain);
+    
+    // Connect osc -> lfoGain -> masterGain
+    osc.connect(lfoGain);
+    lfoGain.connect(masterGain);
+    
+    osc.start();
+    lfo.start();
+  });
+}
 
 soundBtn.addEventListener('click', () => {
+  if (!audioCtx) initAudio();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  
   isPlaying = !isPlaying;
   
   if (isPlaying) {
-    audio.play().catch(() => {
-      // Handle autoplay block
-      console.log('Audio blocked');
-    });
     soundBtn.classList.add('playing');
     soundText.textContent = 'SOUND ON';
+    masterGain.gain.setTargetAtTime(0.15, audioCtx.currentTime, 1);
   } else {
-    audio.pause();
     soundBtn.classList.remove('playing');
     soundText.textContent = 'SOUND OFF';
+    masterGain.gain.setTargetAtTime(0.001, audioCtx.currentTime, 0.5);
   }
 });
