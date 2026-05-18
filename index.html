@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#020107" />
     
     <!-- Security: Content Security Policy to prevent XSS and data injection -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' ws:;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' ws:;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     
     <!-- Primary Meta Tags -->
@@ -35,6 +35,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="/style.css" />
+    
+    <!-- Import Map for Native ES Module Resolution (Fallback for Raw GitHub Pages) -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://esm.sh/three@0.160.0",
+          "gsap": "https://esm.sh/gsap@3.12.5"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="three-container" aria-hidden="true"></div>
