@@ -160,26 +160,18 @@ function animate() {
 animate();
 
 // --- GSAP UI Animations ---
-window.addEventListener('load', () => {
-  const tl = gsap.timeline();
+const tl = gsap.timeline();
 
-  tl.to('.hero-content', {
-    y: 0,
-    opacity: 1,
-    duration: 1.2,
-    ease: 'power3.out',
-    delay: 0.2
-  })
-  .from('.glass-nav', {
-    y: -50,
-    opacity: 0,
-    duration: 1,
-    ease: 'power2.out'
-  }, '-=0.8')
-  .from('.scroll-indicator', {
-    opacity: 0,
-    y: 20,
-    duration: 1,
-    ease: 'power2.out'
-  }, '-=0.5');
-});
+tl.to('.hero-content', {
+  y: 0,
+  opacity: 1,
+  duration: 1.2,
+  ease: 'power3.out',
+  delay: 0.2
+})
+.from('.scroll-indicator', {
+  opacity: 0,
+  y: 20,
+  duration: 1,
+  ease: 'power2.out'
+}, '-=0.5');
