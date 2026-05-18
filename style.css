@@ -206,26 +206,4 @@ body, html {
   }
 }
 
-/* Creative CSS Logo */
-.creative-logo {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -1px;
-  position: relative;
-  z-index: 100;
-  cursor: pointer;
-  padding: 30px;
-  display: inline-block;
-  background: linear-gradient(135deg, #ff4500, #ffd700);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 15px rgba(255, 69, 0, 0.4));
-  transition: filter 0.3s ease, transform 0.3s ease;
-}
 
-.creative-logo:hover {
-  filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
-  transform: scale(1.05);
-}
