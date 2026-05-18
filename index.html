@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#020107" />
     
-    <!-- Security: Content Security Policy to prevent XSS and data injection -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' ws:;" />
+    <!-- Security: Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' ws:;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     
     <!-- Primary Meta Tags -->
@@ -36,15 +36,9 @@
 
     <link rel="stylesheet" href="/style.css" />
     
-    <!-- Import Map for Native ES Module Resolution (Fallback for Raw GitHub Pages) -->
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://esm.sh/three@0.160.0",
-          "gsap": "https://esm.sh/gsap@3.12.5"
-        }
-      }
-    </script>
+    <!-- Fast CDN Libraries (Guarantees ultra-fast loading without module waterfall) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   </head>
   <body>
     <div id="three-container" aria-hidden="true"></div>
@@ -76,6 +70,6 @@
       </button>
     </main>
 
-    <script type="module" src="/main.js"></script>
+    <script src="/main.js"></script>
   </body>
 </html>
